@@ -42,7 +42,9 @@ async def receive_message(request: Request):
         }
 
         async with httpx.AsyncClient() as client:
-            await client.post(url, headers=headers, json=payload)
+            res = await client.post(url, headers=headers, json=payload)
+            print("WhatsApp Status:", res.status_code)
+            print("WhatsApp Response:", res.text)
 
     except Exception as e:
         print("Error:", e)
